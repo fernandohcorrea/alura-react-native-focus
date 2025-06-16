@@ -1,58 +1,84 @@
-import * as Crypto from 'expo-crypto';
-import { useEffect, useState } from "react";
-import { Image, Pressable, Text, View } from "react-native";
+import { useRef, useState } from "react";
+import { Image, View } from "react-native";
+import ActionButton from "./components/ActionButton";
+import FocusButton from "./components/FocusButton";
+import IconPause from "./components/Images/icons/IconPause";
+import IconPlay from "./components/Images/icons/IconPlay";
+import Timer from "./components/Timer";
 import styles from "./styles";
-
 
 const dataTimers = [
   {
     id: 0,
-    name: 'Foco',
-    initValue: 25,
-    image: require('../assets/images/foco.png')
+    name: "Foco",
+    initValue: 25 * 60,
+    image: require("../assets/images/foco.png"),
   },
   {
     id: 1,
-    name: 'Pausa Curta',
-    initValue: 5,
-    image: require('../assets/images/short.png')
+    name: "Pausa Curta",
+    initValue: 5 * 60,
+    image: require("../assets/images/short.png"),
   },
   {
     id: 2,
-    name: 'Pausa Longa',
-    initValue: 10,
-    image: require('../assets/images/long.png')
-  }
-]
+    name: "Pausa Longa",
+    initValue: 10 * 60,
+    image: require("../assets/images/long.png"),
+  },
+];
 
 export default function Index() {
   const [idxActive, setIdxActive] = useState(0);
   const [timerType, setTimerType] = useState(dataTimers[idxActive]);
+  const [seconds, setSeconds] = useState(dataTimers[idxActive].initValue);
+  const [timeRunner, setTimeRunner] = useState(null);
 
-  useEffect(() => {
-    (async () => {
-      const digest = await Crypto.digestStringAsync(
-        Crypto.CryptoDigestAlgorithm.SHA256,
-        'GitHub stars are neat 🌟'
-      );
-      console.log('Digest: ', digest);
-      /* Some crypto operation... */
-    })();
-  }, []);
+  const timerRef = useRef(null);
 
-  const doStart = async () => {
-    console.log('start')
-    const digest = await Crypto.digestStringAsync(
-      Crypto.CryptoDigestAlgorithm.SHA256,
-      'GitHub stars are neat 🌟'
-    );
-    console.log('Digest: ', digest);
-  }
+  const clearTimer = () => {
+    if (timerRef.current != null) {
+      clearInterval(timerRef.current);
+      setTimeRunner(null);
+      timerRef.current = null;
+    }
+  };
+
+  const onPressBtnPlayPause = () => {
+    if (timerRef.current) {
+      clearTimer();
+      return;
+    }
+    onToggleTimer();
+  };
+
+  const onToggleTimer = () => {
+    if (timerRef.current) {
+      clearTimer();
+      return;
+    }
+
+    const id = setInterval(() => {
+      setSeconds((oldState) => {
+        if (oldState === 0) {
+          clearTimer();
+          return timerType.initValue;
+        }
+        return oldState - 1;
+      });
+      console.log("timer");
+    }, 1000);
+
+    setTimeRunner(true);
+    timerRef.current = id;
+  };
 
   const onPressMenuItem = (idx) => {
+    clearTimer();
     setIdxActive(idx);
     setTimerType(dataTimers[idx]);
-  }
+    setSeconds(dataTimers[idx].initValue);
+  };
 
   const buildViewActionsMenu = () => {
     return (
@@ -60,38 +86,31 @@ export default function Index() {
         {dataTimers.map((timerItem) => {
           const isActive = timerItem.id === idxActive;
 
-          let stylesPressable = null;
-          if (isActive) {
-            stylesPressable = styles.viewActionsMenuBtnActive;
-          }
           return (
-            <Pressable style={stylesPressable} onPress={() => onPressMenuItem(timerItem.id)} key={timerItem.id}>
-              <Text style={styles.viewActionsMenuBtnText}>
-                {timerItem.name}
-              </Text>
-            </Pressable>
+            <ActionButton
+              key={timerItem.id}
+              label={timerItem.name}
+              isActive={isActive}
+              onPress={() => onPressMenuItem(timerItem.id)}
+            />
           );
         })}
       </View>
-    )
-  }
+    );
+  };
 
   return (
-    <View style={styles.viewContainer} >
+    <View style={styles.viewContainer}>
       <Image source={timerType.image} />
       <View style={styles.viewActions}>
         {buildViewActionsMenu()}
-        <Text style={styles.textTimer}>
-          25:00
-        </Text>
-        <Pressable style={styles.pressableBtn} onPress={doStart}>
-          <Text style={styles.pressableBtnText}>
-            Começar
-          </Text>
-        </Pressable>
+        <Timer secondsTotal={seconds} />
+        <FocusButton
+          label={timeRunner ? "Pausar" : "Começar"}
+          onPress={onPressBtnPlayPause}
+          icon={timeRunner ? <IconPause /> : <IconPlay />}
+        />
       </View>
     </View>
   );
 }
-
-
