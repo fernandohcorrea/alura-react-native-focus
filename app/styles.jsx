@@ -2,45 +2,33 @@ import { StyleSheet } from "react-native";
 function Styles() {
   return {
     viewContainer: {
-      backgroundColor: '#021123',
+      backgroundColor: "#021123",
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
-      gap: 40,
+      gap: 35,
     },
-    viewActions: {
+    viewLogo: {
+      width: 180,
+      height: 50,
+    },
+    viewContainerCall: {
+      justifyContent: "center",
       alignItems: "center",
-      padding: 24,
-      backgroundColor: '#14448080',
-      borderRadius: 32,
-      borderColor: '#144480',
-      borderWidth: 2,
-      width: '85%',
-      gap: 32
+      gap: 10,
     },
-    viewActionsMenu: {
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      alignItems: 'center',
+    viewTextCall: {
+      color: "#fff",
+      fontSize: 25,
     },
-    viewActionsMenuBtnActive: {
-      borderRadius: 8,
-      backgroundColor: '#144480',
+    viewTextCallBold: {
+      fontWeight: "bold",
     },
-    viewActionsMenuBtnText: {
-      padding: 8,
-      color: '#FFF',
-      fontSize: 12.5,
-      fontWeight: 'bold',
-      textAlign: 'center'
+    viewImageInicial: {
+      alignItems: "center",
+      width: "85%",
     },
-    textTimer: {
-      color: '#FFF',
-      fontSize: 54,
-      fontWeight: 'bold',
-      textAlign: 'center'
-    },
-  }
+  };
 }
 
-export default StyleSheet.create(Styles())
+export default StyleSheet.create(Styles());
