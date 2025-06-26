@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
-import { Image, View } from "react-native";
-import ActionButton from "../components/ActionButton";
-import FocusButton from "../components/FocusButton";
-import IconPause from "../components/Images/icons/IconPause";
-import IconPlay from "../components/Images/icons/IconPlay";
-import Timer from "../components/Timer";
-import styles from "./styles";
+import { Image, SafeAreaView, View } from "react-native";
+import ActionButton from "../../components/ActionButton";
+import FocusButton from "../../components/FocusButton";
+import IconPause from "../../components/Images/icons/IconPause";
+import IconPlay from "../../components/Images/icons/IconPlay";
+import Timer from "../../components/Timer";
+import { pomodoroStyles as styles } from "../../styles";
 
 const dataTimers = [
   {
@@ -100,7 +100,7 @@ export default function Pomodoro() {
   };
 
   return (
-    <View style={styles.viewContainer}>
+    <SafeAreaView style={styles.viewContainer}>
       <Image source={timerType.image} />
       <View style={styles.viewActions}>
         {buildViewActionsMenu()}
@@ -111,6 +111,6 @@ export default function Pomodoro() {
           icon={timeRunner ? <IconPause /> : <IconPlay />}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }

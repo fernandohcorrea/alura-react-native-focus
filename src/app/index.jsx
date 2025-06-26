@@ -1,8 +1,8 @@
 import { router } from "expo-router";
 import { Image, View } from "react-native";
-import FocusButton from "./components/FocusButton";
-import TextFont from "./components/TextFont";
-import styles from "./styles";
+import FocusButton from "../components/FocusButton";
+import TextFont from "../components/TextFont";
+import { homeStyles as styles } from "../styles";
 
 export default function Index() {
   return (
