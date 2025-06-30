@@ -1,5 +1,6 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
-import { SplashScreen } from "expo-router";
+import { router, SplashScreen } from "expo-router";
 import { Drawer } from "expo-router/drawer";
 import { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -67,8 +68,19 @@ export default function Layout() {
           name="tasks-add/index"
           options={{
             drawerLabel: "New Task",
-            title: "New Task",
+            title: "",
             drawerItemStyle: { display: "none" },
+            headerLeft: () => {
+              return (
+                <Ionicons
+                  name="arrow-back"
+                  size={24}
+                  color="#FFF"
+                  style={{ marginLeft: 16 }}
+                  onPress={() => router.navigate("/tasks")}
+                />
+              );
+            },
           }}
         />
       </Drawer>

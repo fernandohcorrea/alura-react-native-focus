@@ -2,7 +2,8 @@ import { StyleSheet } from "react-native";
 function Styles() {
   return {
     pressableBtn: {
-      backgroundColor: "#B872FF",
+      borderColor: "#B872FF",
+      borderWidth: 1,
       padding: 8,
       borderRadius: 50,
       width: "100%",
@@ -11,11 +12,17 @@ function Styles() {
       flexDirection: "row",
       gap: 8,
     },
+    pressableBtnFill: {
+      backgroundColor: "#B872FF",
+    },
     pressableBtnText: {
-      color: "#021123",
+      color: "#B872FF",
       fontSize: 22,
       fontWeight: "bold",
       textAlign: "center",
+    },
+    pressableBtnTextFill: {
+      color: "#021123",
     },
   };
 }

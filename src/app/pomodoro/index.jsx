@@ -2,8 +2,6 @@ import { useRef, useState } from "react";
 import { Image, SafeAreaView, View } from "react-native";
 import ActionButton from "../../components/ActionButton";
 import FocusButton from "../../components/FocusButton";
-import IconPause from "../../components/Images/icons/IconPause";
-import IconPlay from "../../components/Images/icons/IconPlay";
 import Timer from "../../components/Timer";
 import { pomodoroStyles as styles } from "../../styles";
 
@@ -108,7 +106,7 @@ export default function Pomodoro() {
         <FocusButton
           label={timeRunner ? "Pausar" : "Começar"}
           onPress={onPressBtnPlayPause}
-          icon={timeRunner ? <IconPause /> : <IconPlay />}
+          iconName={timeRunner ? "pause" : "play"}
         />
       </View>
     </SafeAreaView>

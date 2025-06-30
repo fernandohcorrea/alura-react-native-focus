@@ -85,9 +85,20 @@ function TasksStyles() {
     viewContainer: {
       backgroundColor: "#021123",
       flex: 1,
-      justifyContent: "center",
       alignItems: "center",
-      gap: 40,
+    },
+
+    viewTextTasksList: {
+      color: "#fff",
+      fontSize: 37,
+      fontWeight: "bold",
+      height: 60,
+    },
+    viewTasksList: {
+      gap: 20,
+    },
+    viewTaskButton: {
+      marginTop: 50,
     },
   };
 }
