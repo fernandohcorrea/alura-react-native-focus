@@ -104,3 +104,57 @@ function TasksStyles() {
 }
 
 export const tasksStyles = StyleSheet.create(TasksStyles());
+
+const AddTasksStyles = () => {
+  return {
+    viewContainer: {
+      flex: 1,
+      backgroundColor: "#021123",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: 10,
+    },
+    viewInnerAddTasks: {
+      flex: 1,
+      alignItems: "center",
+    },
+    viewTextAddTasks: {
+      color: "#fff",
+      fontSize: 30,
+      fontWeight: "bold",
+      height: 60,
+    },
+    viewFormAddTasks: {
+      backgroundColor: "#98A0A8",
+      borderRadius: 12,
+      padding: 24,
+      gap: 32,
+    },
+    viewTextAddTasksLabel: {
+      color: "#021123",
+      fontSize: 15,
+    },
+    textInputAddTasks: {
+      backgroundColor: "#fff",
+      borderRadius: 8,
+      padding: 16,
+      height: 150,
+    },
+    viewButtonActions: {
+      flexDirection: "row",
+      justifyContent: "flex-end",
+      alignItems: "center",
+      gap: 8,
+    },
+    pressableSaveTask: {
+      backgroundColor: "#CCC",
+      padding: 10,
+      borderRadius: 8,
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "flex-end",
+      gap: 6,
+    },
+  };
+};
+export const addTasksStyles = StyleSheet.create(AddTasksStyles());
